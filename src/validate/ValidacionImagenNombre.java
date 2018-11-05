@@ -1,9 +1,5 @@
 package validate;
 
-
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class ValidacionImagenNombre extends ValidacionMultiValidation implements IValidacion{
 
     private String value;
@@ -14,8 +10,6 @@ public class ValidacionImagenNombre extends ValidacionMultiValidation implements
     }
 
     public boolean validar(){
-
-       assertTrue(value.contains("."));
 
         String nombreImagen = new String(value.substring(0 , value.lastIndexOf('.')));
 

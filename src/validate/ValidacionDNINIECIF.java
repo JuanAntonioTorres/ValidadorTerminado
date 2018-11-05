@@ -5,7 +5,7 @@ package validate;
  * @author yo
  * El antecedente del NIF es el CIF, utilizado en personas jurídicas
  */
-public class ValidacionDNINIECIF implements IValidacion{
+public class ValidacionDNINIECIF extends ValidacionAlMenosUno implements IValidacion{
 
     private String documento;
 
@@ -18,17 +18,8 @@ public class ValidacionDNINIECIF implements IValidacion{
 
     @Override
     public boolean validar() {
-        ValidacionDNINIF validacionDNINIF = new ValidacionDNINIF(documento);
-        if (!validacionDNINIF.validar()){
-            ValidacionNIE validacionNIE = new ValidacionNIE(documento);
-            if(!validacionNIE.validar()){
-                ValidacionNIFCIF validacionNIFCIF = new ValidacionNIFCIF(documento);
-                if(!validacionNIFCIF.validar()){
-                    return false;
-                }
-            }
-        }
-        return true;
+        IValidacion [] validaciones = {new ValidacionDNINIF(documento),new ValidacionNIE(documento), new ValidacionNIFCIF(documento)};
+        return super.validar(validaciones);
     }
 
     @Override
